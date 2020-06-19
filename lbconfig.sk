@@ -100,11 +100,11 @@ command luckyblock [<text>] [<text>]:
                 copy json {_input2} to {_output2::*}
                 set {_output2::LatestVersion} to {_output2::LatestVersion}
                 if {_output2::LatestVersion} is not {LuckyBlocks::Version}:
-                    delete file "file plugins/Skript/scripts/json-lucky-block.sk"
+                    delete file "plugins/Skript/scripts/json-lucky-block.sk"
                     download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
                     set line 3 in file "plugins/LuckyBlocks/config.json" to "    ""Version"": ""%{_output2::LatestVersion}%"","
                     replace all "[Version]" with "&e%{_output2::LatestVersion}%&a" in {LuckyBlocks::Updated}
-                    send "%{LuckyBlocks::Prefix}%&a%{LuckyBlocks::Updated}%"
+                    send "%{LuckyBlocks::Prefix}%&a%{LuckyBlocks::Updated}% &8(Auto Update)"
                     make player run command "jsonreloadconfig" as op
 
 
@@ -115,9 +115,15 @@ command luckyblock [<text>] [<text>]:
 
 
             loop {_output::Lucky Blocks::*}:
-                set {LuckyBlocks::%loop-index%::Unlucky} to {_output::Lucky Blocks::%loop-index%::Unlucky}
-                set {LuckyBlocks::%loop-index%::Normal} to {_output::Lucky Blocks::%loop-index%::Normal}
-                set {LuckyBlocks::%loop-index%::Super} to {_output::Lucky Blocks::%loop-index%::Super}
+                if {_output::Lucky Blocks::%loop-index%::Unlucky} is set:
+                    set {LuckyBlocks::%loop-index%::Unlucky} to {_output::Lucky Blocks::%loop-index%::Unlucky}
+
+                if {_output::Lucky Blocks::%loop-index%::Normal} is set:
+                    set {LuckyBlocks::%loop-index%::Normal} to {_output::Lucky Blocks::%loop-index%::Normal}
+
+                if {_output::Lucky Blocks::%loop-index%::Super} is set:
+                    set {LuckyBlocks::%loop-index%::Super} to {_output::Lucky Blocks::%loop-index%::Super}
+
                 set {_TEMPORARY} to loop-index in upper case
                 replace all " " with "-" in {_TEMPORARY}
                 
@@ -260,7 +266,7 @@ command luckyblock [<text>] [<text>]:
             send ""
             send "             &7Server: &r%bukkit version% (%skript version%)"
             if {_output1::LatestVersion} = {LuckyBlocks::Version}:
-                send "                        &7Version: &r%{LuckyBlocks::Version}%"
+                send "                               &7Version: &r%{LuckyBlocks::Version}%"
             else:
                 send "             &7Version: &r%{LuckyBlocks::Version}% &c&lOUTDATED! &8(New Version %{_output1::LatestVersion}%&8)"
             send ""
