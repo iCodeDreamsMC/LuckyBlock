@@ -1,0 +1,37 @@
+{
+    "Prefix": "&eLucky Block&6>",
+    "Version": "1.0",
+    "ServerID": "00000000000000000000",
+    "AdminID": "00000000000000000000",
+    "Debug": false,
+    "Auto Update": false,
+    "Hologram Delay": 8.0,
+    "Resource Pack": "https://www.dropbox.com/s/ivvrlc1nhuy0p63/luckyblocks.zip?dl=1",
+    "Lucky Blocks": {
+        "Spiral Lucky Block": {
+            "Unlucky": "BLACK TERRACOTTA",
+            "Normal": "LIGHT GRAY TERRACOTTA",
+            "Super": "GRAY TERRACOTTA"
+        }
+    },
+    "Messages":{
+        "Reload": "&aReloaded Lucky Blocks!",
+        "Debug Menu Alert": "&b/debugmenu &3- &rOpen your Debug Menu"
+    },
+    "Debug Menu":{
+        "Drop Info": "WRITABLE BOOK",
+        "Item Drop": "PAPER",
+        "Player Command": "OBSERVER",
+        "Console Command": "OBSERVER",
+        "Send Message": "KNOWLEDGE BOOK",
+        "Broadcast Message": "KNOWLEDGE BOOK",
+        "Structure": "BLACK GLAZED TERRACOTTA",
+        "Hologram": "NAMETAG"
+    },
+    "Discord Integration": {
+        "Bot Token": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "Bot ID": "Lucky Block Bot",
+        "Channel ID": "00000000000000000000",
+        "Embed Color": "Yellow"
+    }
+}
