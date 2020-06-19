@@ -42,7 +42,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                 send formatted "&r[&aDebug&r] &eLucky Block&r Author: &r%{_output::author}%" to console
                 send formatted "&r[&aDebug&r] &eLucky Block&r File Location: &afile/drop_%{_random}%" to console
                 send formatted "&r[&aDebug&r] &eLucky Block&r View at: &b&n%{_file}%" to console
-                set the description of embed to "**Drop ##:** %{_random}% %nl%**Author:** `%{_output::author}%` %nl%**File Location:**%nl%```v%nl%%{_file}% %nl%``` %nl%**Block Location:** `%{_loc}%` %nl%**Executor:** `%{_p}%`"
+                set the description of embed to "**Drop ##:** %{_random}% %nl%**Author:** `%{_output::author}%` %nl%**File Location:**%nl%```%nl%%{_file}% %nl%``` %nl%**Block Location:** `%{_loc}%` %nl%**Executor:** `%{_p}%`"
                 create gui with id "DEBUG-%{_p}%-ITEMS" with virtual chest with 6 rows named "&0&l     LUCKY BLOCK DEBUG":
                     make next gui slot with black stained glass pane with name "&r"
                     make next gui slot with black stained glass pane with name "&r"
