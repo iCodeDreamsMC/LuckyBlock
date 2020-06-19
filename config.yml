@@ -1,0 +1,31 @@
+
+#      ╔╗   ╔╗ ╔╗╔═══╗╔╗╔═╗╔╗  ╔╗     ╔══╗ ╔╗   ╔═══╗╔═══╗╔╗╔═╗╔═══╗
+#      ║║   ║║ ║║║╔═╗║║║║╔╝║╚╗╔╝║     ║╔╗║ ║║   ║╔═╗║║╔═╗║║║║╔╝║╔═╗║
+#      ║║   ║║ ║║║║ ╚╝║╚╝╝ ╚╗╚╝╔╝     ║╚╝╚╗║║   ║║ ║║║║ ╚╝║╚╝╝ ║╚══╗
+#      ║║ ╔╗║║ ║║║║ ╔╗║╔╗║  ╚╗╔╝      ║╔═╗║║║ ╔╗║║ ║║║║ ╔╗║╔╗║ ╚══╗║
+#      ║╚═╝║║╚═╝║║╚═╝║║║║╚╗  ║║       ║╚═╝║║╚═╝║║╚═╝║║╚═╝║║║║╚╗║╚═╝║
+#      ╚═══╝╚═══╝╚═══╝╚╝╚═╝  ╚╝       ╚═══╝╚═══╝╚═══╝╚═══╝╚╝╚═╝╚═══╝
+#
+# Placeholders:
+#
+# [Player] - Replaced with Player's Name
+# [PlayerUUID] - Replaced with Player's UUID
+# [BlockLocation] - Replaced with the Lucky Block's Location
+# [PlayerLocation] - Replaced with Player's Location
+# [Random](#-#) - Replaced with a Random Number
+# [RandomList](First,Second,Third) - Replaced with a Random Input from the List.
+#
+#===============================================================================#
+Prefix: &eLucky Block&6>
+Version: 1.0 #DO NOT CHANGE THIS!!!
+ServerID: zw50Xn93x86bAow1oeER #DO NOT CHANGE THIS!!!
+AdminID: 00000000000000000000
+Spiral Lucky Block:
+  Super Lucky Block: 
+    Material: gray terracotta
+    File Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
+  Normal Lucky Block: 
+    Material: light gray terracotta
+    File Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
+Messages:
+  Reload: &aReloaded Lucky Blocks!
