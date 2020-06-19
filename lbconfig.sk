@@ -102,7 +102,7 @@ command luckyblock [<text>] [<text>]:
                 if {_output2::LatestVersion} is not {LuckyBlocks::Version}:
                     delete file "file plugins/Skript/scripts/json-lucky-block.sk"
                     download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
-                    set line 3 in file "plugins/LuckyBlocks/config.json" to "    ""Version"": %{_output2::LatestVersion}%,"
+                    set line 3 in file "plugins/LuckyBlocks/config.json" to "    ""Version"": ""%{_output2::LatestVersion}%"","
                     replace all "[Version]" with "&e%{_output2::LatestVersion}%&a" in {LuckyBlocks::Updated}
                     send "%{LuckyBlocks::Prefix}%&a%{LuckyBlocks::Updated}%"
                     make player run command "jsonreloadconfig" as op
@@ -279,7 +279,8 @@ command luckyblock [<text>] [<text>]:
                 if file "plugins/Skript/scripts/json-lucky-block.sk" exists:
                     delete file "plugins/Skript/scripts/json-lucky-block.sk"
                 download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
-                set line 3 in file "plugins/LuckyBlocks/config.json" to "    ""Version"": %{_output3::LatestVersion}%,"
+                set line 3 in file "plugins/LuckyBlocks/config.json" to "    ""Version"": ""%{_output3::LatestVersion}%"","
+                wait 4 ticks
                 make player run command "jsonreloadconfig" as op
 
                     
