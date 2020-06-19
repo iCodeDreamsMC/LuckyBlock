@@ -268,8 +268,8 @@ command luckyblock [<text>] [<text>]:
                     set line 44 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is between 6 and 10:"
                     set line 45 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Super::High}%"
                     set line 46 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Super/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
-            loop {LuckyBlocks::List::*}:
-                delete file "plugins/Skript/scripts/%loop-index%.sk"
+                wait 2 ticks
+                execute console command "skript reload %{_TEMPORARY}%"
         if arg-1 is "Info":
             set {_contents1::*} to contents from url "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/api.json"
             set {_content1} to concat {_contents1::*} with nl
