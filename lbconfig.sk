@@ -87,7 +87,6 @@ command luckyblock [<text>] [<text>]:
             set {LuckyBlocks::AdminID} to {_output::AdminID}
             set {LuckyBlocks::Debug} to {_output::Debug}
             set {LuckyBlocks::Auto-Update} to {_output::Auto Update}
-            set {LuckyBlocks::Hologram-Delay} to "%{_output::Hologram Delay}% seconds" parsed as timespan
             set {LuckyBlocks::Resource-Pack} to {_output::Resource Pack}
 
             set {LuckyBlocks::Reload-Message} to colored {_output::Messages::Reload} 
