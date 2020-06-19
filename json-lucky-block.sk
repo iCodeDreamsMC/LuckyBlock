@@ -408,7 +408,7 @@ command jsonreloadconfig:
     executable by: players and console
     trigger:
         if file "plugins/Skript/scripts/lbconfig.sk" exists:
-            delete file "file plugins/Skript/scripts/lbconfig.sk"
+            delete file "plugins/Skript/scripts/lbconfig.sk"
         download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/lbconfig.sk" to file "plugins/Skript/scripts/lbconfig.sk"
         wait 4 ticks
         make player run command "luckyblock reload" as op
