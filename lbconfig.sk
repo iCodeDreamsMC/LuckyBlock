@@ -1,6 +1,17 @@
 options:
     Noperms: &cYou do not have permission to that command!
 
+on skript load:
+    login to "%{LuckyBlocks::BotToken}%" with the name "%{LuckyBlocks::BotID}%"
+
+on join:
+    if {LuckyBlocks::Resource-Pack} is set:
+        if {LuckyBlocks::Resource-Pack} is not "":
+            send resource pack from "%{LuckyBlocks::Resource-Pack}%" to player
+            send "%{LuckyBlocks::Resource-Pack-Message}%"
+  
+           
+
 command luckyblock [<text>] [<text>]:
     usage: /luckyblock [Reload / Info / Update]
     permission: command.json
@@ -23,7 +34,7 @@ command luckyblock [<text>] [<text>]:
 
             if file "plugins/LuckyBlocks/config.json" does not exist:
                 download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/config.json" to file "plugins/LuckyBlocks/config.json"
-
+            wait 2 ticks
             set line 4 in file "plugins/LuckyBlocks/config.json" to "    ""ServerID"": ""%{ServerID}%"","
 
 
@@ -83,6 +94,7 @@ command luckyblock [<text>] [<text>]:
             set {LuckyBlocks::Debug-Menu-Alert} to colored {_output::Messages::Debug Menu Alert} 
             set {LuckyBlocks::No-Updates} to colored {_output::Messages::No Updates} 
             set {LuckyBlocks::Updated} to colored {_output::Messages::Updated} 
+            set {LuckyBlocks::Resource-Pack-Message} to colored {_output::Messages::Resource Pack} 
 
             set {LuckyBlocks::Debug-Menu::Drop-Info} to {_output::Debug Menu::Drop Info} parsed as itemtype
             set {LuckyBlocks::Debug-Menu::Item-Drop} to {_output::Debug Menu::Item Drop} parsed as itemtype
@@ -92,6 +104,12 @@ command luckyblock [<text>] [<text>]:
             set {LuckyBlocks::Debug-Menu::Broadcast-Message} to {_output::Debug Menu::Broadcast Message} parsed as itemtype
             set {LuckyBlocks::Debug-Menu::Structure} to {_output::Debug Menu::Structure} parsed as itemtype
             set {LuckyBlocks::Debug-Menu::Hologram} to {_output::Debug Menu::Hologram} parsed as itemtype
+
+            set {LuckyBlocks::BotToken} to {_output::Discord Integration::Bot Token}
+            set {LuckyBlocks::BotID} to {_output::Discord Integration::Bot ID}
+            set {LuckyBlocks::Channel-ID} to {_output::Discord Integration::Channel ID}
+            set {LuckyBlocks::Embed-Color} to {_output::Discord Integration::Embed Color}
+            
             send "%{LuckyBlocks::Prefix}%%{LuckyBlocks::Reload-Message}%"
             if {LuckyBlocks::Auto-Update} is true:
                 set {_contents2::*} to contents from url "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/api.json"
