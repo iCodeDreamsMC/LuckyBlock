@@ -1,0 +1,403 @@
+#      ╔╗   ╔╗ ╔╗╔═══╗╔╗╔═╗╔╗  ╔╗     ╔══╗ ╔╗   ╔═══╗╔═══╗╔╗╔═╗╔═══╗
+#      ║║   ║║ ║║║╔═╗║║║║╔╝║╚╗╔╝║     ║╔╗║ ║║   ║╔═╗║║╔═╗║║║║╔╝║╔═╗║
+#      ║║   ║║ ║║║║ ╚╝║╚╝╝ ╚╗╚╝╔╝     ║╚╝╚╗║║   ║║ ║║║║ ╚╝║╚╝╝ ║╚══╗
+#      ║║ ╔╗║║ ║║║║ ╔╗║╔╗║  ╚╗╔╝      ║╔═╗║║║ ╔╗║║ ║║║║ ╔╗║╔╗║ ╚══╗║
+#      ║╚═╝║║╚═╝║║╚═╝║║║║╚╗  ║║       ║╚═╝║║╚═╝║║╚═╝║║╚═╝║║║║╚╗║╚═╝║
+#      ╚═══╝╚═══╝╚═══╝╚╝╚═╝  ╚╝       ╚═══╝╚═══╝╚═══╝╚═══╝╚╝╚═╝╚═══╝
+#===============================================================================#
+options:
+    Noperms: &7Unknown Command! Type `&b/help&7` for a full list of commands!
+#===============================================================================#
+function LuckyBlock(file: text, p: player, loc: location, random: integer):
+    if {neverset} is not set:
+        set {_contents::*} to file contents of "%{_file}%"
+        set {_content} to concat {_contents::*} with nl
+        set {_input} to {_content}
+        copy json {_input} to {_output::*}
+        if "%{_output::key}%" is "drop_%{_random}%":
+            if {debug.mode} is true:
+                if {LuckyBlocks::Debug-Menu-Alert} is not "":
+                    send action bar "%{LuckyBlocks::Debug-Menu-Alert}%" to {_p}
+                send "&0==================================================================================================================" to console
+                send "&r[&aDebug&r] &eLucky Block&r &r%{_p}% &ropened a &6Spiral Lucky Block" to console
+                send formatted "&r[&aDebug&r] &eLucky Block&r &rDrop ##&a%{_random}%&r created by &a%{_output::author}%" to console
+                send formatted "&r[&aDebug&r] &eLucky Block&r Author: &r%{_output::author}%" to console
+                send formatted "&r[&aDebug&r] &eLucky Block&r File Location: &afile/drop_%{_random}%" to console
+                send formatted "&r[&aDebug&r] &eLucky Block&r View at: &b&n%{_file}%" to console
+                create gui with id "DEBUG-%{_p}%-ITEMS" with virtual chest with 6 rows named "&0&l     LUCKY BLOCK DEBUG":
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with {LuckyBlocks::Debug-Menu::Drop-Info} with name "&f&lDROP INFORMATION" with lore "&7&nDrop ##&7:", "&r%{_random}%", "", "&7&nAuthor&7:", "&r%{_output::author}%", "", "&7&nFile Location&7:", "&r%{_file}%", "", "&7&nFile Name&7:", "&rdrop_%{_random}%&r.json", "", "&7&nBlock Type&7:", "&rSpiral Lucky Block", "", "&7&nBlock Location&7:", "&r%{_loc}%", "", "&7&nExecutor&7:", "&r%{_p}%", "", and "&8%now%&8 - %{_p}%"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+                    make next gui slot with black stained glass pane with name "&r"
+            if {_output::Items} is set:
+                set {_temp.num} to 0
+                loop {_output::Items::*}:
+                    add 1 to {_temp.num} 
+                    set {_amount} to "%{_output::Items::%loop-index-1%::amount}%"
+                    set {_item} to "%{_output::Items::%loop-index-1%::Material::Item}%"
+                    set {_nbt} to "%{_output::Items::%loop-index-1%::Material::NBT}%"
+                    set {_name} to colored "%{_output::Items::%loop-index-1%::Name::1}%"
+                    set {_lore.1} to colored "%{_output::Items::%loop-index-1%::Lore::1}%"
+                    set {_lore.2} to colored "%{_output::Items::%loop-index-1%::Lore::2}%"
+                    set {_lore.3} to colored "%{_output::Items::%loop-index-1%::Lore::3}%"
+                    if "%{_nbt}%" = "":
+                        set {_nbt} to "{}"
+                    loop 3 times:
+                        if {_lore.%loop-value-1%} is not set:
+                            set {_lore.%loop-value-1%} to ""
+                    set {_player} to "%{_p}%"
+                    replace all "[Player]" with "%{_player}%" in {_nbt}
+                    replace all "[Player]" with "%{_player}%" in {_name}
+                    replace all "[Player]" with "%{_player}%" in {_lore.1}
+                    replace all "[Player]" with "%{_player}%" in {_lore.2}
+                    replace all "[Player]" with "%{_player}%" in {_lore.3}
+                    set {_player_uuid} to uuid of {_p}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_nbt}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_name}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_lore.1}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_lore.2}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_lore.3}
+                    set {_p_loc} to "%location of {_p}%"
+                    replace all "x: " with "" in {_p_loc}
+                    replace all "y: " with "" in {_p_loc} 
+                    replace all "z: " with "" in {_p_loc}
+                    replace all "," with "" in {_p_loc}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_nbt}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_name}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_lore.1}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_lore.2}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_lore.3}
+                    set {_b_loc} to "%{_loc}%"
+                    replace all "x: " with "" in {_b_loc}
+                    replace all "y: " with "" in {_b_loc} 
+                    replace all "z: " with "" in {_b_loc}
+                    replace all "," with "" in {_b_loc}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_nbt}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_name}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_lore.1}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_lore.2}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_lore.3}
+                    set {_nbt} to RandomizeInteger({_nbt})
+                    set {_name} to RandomizeInteger({_name})
+                    set {_item} to RandomizeInteger({_item})
+                    set {_lore.1} to RandomizeInteger({_lore.1})
+                    set {_lore.2} to RandomizeInteger({_lore.2})
+                    set {_lore.3} to RandomizeInteger({_lore.3})
+                    set {_amount} to RandomizeInteger({_amount})
+                    set {_nbt} to RandomizeList({_nbt})
+                    set {_name} to RandomizeList({_name})
+                    set {_item} to RandomizeList({_item})
+                    set {_lore.1} to RandomizeList({_lore.1})
+                    set {_lore.2} to RandomizeList({_lore.2})
+                    set {_lore.3} to RandomizeList({_lore.3})
+                    set {_amount} to RandomizeList({_amount})
+                    set {_item} to "%{_item}%" parsed as itemtype
+                    set {_amount} to "%{_amount}%" parsed as integer
+                    if "%{_name}%" contains "none":
+                        set {_name} to ""
+                    if "%{_lore.1}%" contains "none":
+                        set {_lore.1} to ""
+                    if "%{_nbt}%" contains "none":       
+                        set {_nbt} to ""
+                    if {_amount} > 0:
+                        if {_lore.1} is "":
+                            set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%"
+                        else:
+                            if {_lore.1} is not "":
+                                if {_lore.2} is not set:
+                                    set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%" with lore "%{_lore.1}%"
+                                if {_lore.2} is "":
+                                    set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%" with lore "%{_lore.1}%"
+                                if {_lore.2} contains "none":
+                                    set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%" with lore "%{_lore.1}%"
+                                else:   
+                                    if {_lore.3} is not set:
+                                        set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%" with lore "%{_lore.1}%", and "%{_lore.2}%"
+                                    if {_lore.3} is "":
+                                        set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%" with lore "%{_lore.1}%", and "%{_lore.2}%"
+                                    if {_lore.3} contains "none":
+                                        set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%" with lore "%{_lore.1}%", and "%{_lore.2}%"
+                                    else:
+                                        set {_temp} to {_amount} of {_item} with nbt "%{_nbt}%" with name "%{_name}%" with lore "%{_lore.1}%", "%{_lore.2}%", and "%{_lore.3}%"
+                        set {_%{_output::key}%::Items::%{_temp.num}%.item} to "%{_item}%" in upper case
+                        set {_%{_output::key}%::Items::%{_temp.num}%.amount} to {_amount}
+                        set {_%{_output::key}%::Items::%{_temp.num}%.name} to "%{_name}%"
+                        set {_%{_output::key}%::Items::%{_temp.num}%.nbt} to "%{_nbt}%"
+                        if {_%{_output::key}%::Items::%{_temp.num}%.nbt} is "":
+                            set {_%{_output::key}%::Items::%{_temp.num}%.nbt} to "NONE"
+                        if "%{_lore.1}%" contains "NONE":
+                            set {_lore.1} to ""
+                        if "%{_lore.2}%" contains "NONE":
+                            set {_lore.2} to ""
+                        if "%{_lore.3}%" contains "NONE":
+                            set {_lore.3} to ""
+                        if "%{_nbt}%" contains "NONE":       
+                            set {_nbt} to "{}"
+                        set {_%{_output::key}%::Items::%{_temp.num}%.lore1} to "%{_lore.1}%"
+                        set {_%{_output::key}%::Items::%{_temp.num}%.lore2} to "%{_lore.2}%"
+                        set {_%{_output::key}%::Items::%{_temp.num}%.lore3} to "%{_lore.3}%"
+                        set {_%{_output::key}%::Items::%{_temp.num}%} to {_temp}
+                        set {_%{_output::key}%::Items::%{_temp.num}%.key} to loop-index-1 in upper case
+                loop 100 times:
+                    if {_%{_output::key}%::Items::%loop-value-1%} is set:
+                        if {_%{_output::key}%::Items::%loop-value-1%.amount} > 0:
+                            drop {_%{_output::key}%::Items::%loop-value-1%.amount} of {_%{_output::key}%::Items::%loop-value-1%} at {_loc}
+                            if {debug.mode} is true:
+                                send "&r[&aDebug&r] &eLucky Block&r Dropped &a%{_%{_output::key}%::Items::%loop-value-1%.amount}% &a%{_%{_output::key}%::Items::%loop-value-1%.item}%&r with name ""&a%{_%{_output::key}%::Items::%loop-value-1%.name}%&r"" with nbt ""&a%{_%{_output::key}%::Items::%loop-value-1%.nbt}%&r"" at location &a%{_loc}%""" to console
+                                edit gui "DEBUG-%{_p}%-ITEMS":
+                                    if length of "&r%{_%{_output::key}%::Items::%loop-value-1%.nbt}%" is greater than 100:
+                                        set {_loopvalue1} to loop-value-1
+                                        set {menuitem.number} to "%loop-value-1%"
+                                        make next gui slot with {LuckyBlocks::Debug-Menu::Item-Drop} with name "&f&lITEM DROP" with lore "&7&nID&7:", "&r%{_%{_output::key}%::Items::%loop-value-1%.key}%", "", "&7&nName&7:", "&r%{_%{_output::key}%::Items::%loop-value-1%.name}%", "", "&7&nLore&7:", "&r%{_%{_output::key}%::Items::%loop-value-1%.lore1}%", "&r%{_%{_output::key}%::Items::%loop-value-1%.lore2}%", "&r%{_%{_output::key}%::Items::%loop-value-1%.lore3}%", "", "&7&nMaterial&7: &r%{_%{_output::key}%::Items::%loop-value-1%.item} %", "&7&nNBT&7: &rMiddle-Click &8&o(NBT Length extends GUI Scale Window!)", "&7&nAmount&7: &r%{_%{_output::key}%::Items::%loop-value-1%.amount}%", "", and "&8%now%&8 - %{_p}%":
+                                            if "%click type%" contains "middle":
+                                                send "&7NBT: &r%{_%{_output::key}%::Items::%{_loopvalue1}%.nbt}%"
+                                    else:
+                                        make next gui slot with {LuckyBlocks::Debug-Menu::Item-Drop} with name "&f&lITEM DROP" with lore "&7&nID&7:", "&r%{_%{_output::key}%::Items::%loop-value-1%.key}%", "", "&7&nName&7:", "&r%{_%{_output::key}%::Items::%loop-value-1%.name}%", "", "&7&nLore&7:", "&r%{_%{_output::key}%::Items::%loop-value-1%.lore1}%", "&r%{_%{_output::key}%::Items::%loop-value-1%.lore2}%", "&r%{_%{_output::key}%::Items::%loop-value-1%.lore3}%", "", "&7&nMaterial&7: &r%{_%{_output::key}%::Items::%loop-value-1%.item} %", "&7&nNBT&7: &r%{_%{_output::key}%::Items::%loop-value-1%.nbt}%", "&7&nAmount&7: &r%{_%{_output::key}%::Items::%loop-value-1%.amount}%", "", and "&8%now%&8 - %{_p}%"
+            if {_output::Commands} is set:
+                if {_output::Commands::Player} is set:
+                    loop {_output::Commands::Player::*}:
+                        add 1 to {_temp.num.command.player}
+                        set {_cmd} to "%{_output::Commands::Player::%{_temp.num.command.player}%}%"
+                        replace all "[Player]" with "%{_p}%" in {_cmd}
+                        set {_player_uuid} to uuid of {_p}
+                        replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_cmd}
+                        set {_p_loc} to "%location of {_p}%"
+                        replace all "x: " with "" in {_p_loc}
+                        replace all "y: " with "" in {_p_loc} 
+                        replace all "z: " with "" in {_p_loc}
+                        replace all "," with "" in {_p_loc}
+                        replace all "[PlayerLocation]" with "%{_p_loc}%" in {_cmd}
+                        set {_b_loc} to "%{_loc}%"
+                        replace all "x: " with "" in {_b_loc}
+                        replace all "y: " with "" in {_b_loc} 
+                        replace all "z: " with "" in {_b_loc}
+                        replace all "," with "" in {_b_loc}
+                        replace all "[BlockLocation]" with "%{_b_loc}%" in {_cmd}
+                        set {_cmd} to RandomizeInteger({_cmd})
+                        set {_cmd} to RandomizeList({_cmd})
+                        if "%{_cmd}%" is not "":
+                            make {_p} run command "%{_cmd}%" as op
+                            if {debug.mode} is true:
+                                send "&r[&aDebug&r] &eLucky Block&r &b%{_p}%&r was forced to run command ""&a%{_cmd}%&r"" as op" to console
+                                edit gui "DEBUG-%{_p}%-ITEMS":
+                                    if length of "%{_cmd}%" is greater than 100:
+                                        set {_loopvalue2} to loop-value-1
+                                        set {menuitem.number2} to "%loop-value-1%"
+                                        make next gui slot with {LuckyBlocks::Debug-Menu::Player-Command} with name "&r&lPLAYER COMMAND" with lore "&7&nExecuted By&7:", "&r%{_p}% &8&o(As Operator)", "", "&7&nCommand&7:", "&rMiddle-Click &8&o(Command Length extends GUI Scale Window!)", "", and "&8%now%&8 - %{_p}%":
+                                            if "%click type%" contains "middle":
+                                                send "&7Command: &r%{_cmd}%"
+                                    else:
+                                        make next gui slot with {LuckyBlocks::Debug-Menu::Player-Command} with name "&r&lPLAYER COMMAND" with lore "&7&nExecuted By&7:", "&r%{_p}% &8&o(As Operator)", "", "&7&nCommand&7:", "&r/%{_cmd}%", "", and "&8%now%&8 - %{_p}%"
+                                    #make next gui slot with observer with name "&r&lPLAYER COMMAND" with lore "&7&nExecuted By&7:", "&r%{_p}% &8&o(As Operator)", "", "&7&nCommand&7:", "&r/%{_cmd}%", "", and "&8%now%&8 - %{_p}%"
+                if {_output::Commands::Console} is set:
+                    loop {_output::Commands::Console::*}:
+                        add 1 to {_temp.num.command.command}
+                        set {_cmd} to "%{_output::Commands::Console::%{_temp.num.command.command}%}%"
+                        replace all "[Player]" with "%{_p}%" in {_cmd}
+                        set {_player_uuid} to uuid of {_p}
+                        replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_cmd}
+                        set {_p_loc} to "%location of {_p}%"
+                        replace all "x: " with "" in {_p_loc}
+                        replace all "y: " with "" in {_p_loc} 
+                        replace all "z: " with "" in {_p_loc}
+                        replace all "," with "" in {_p_loc}
+                        replace all "[PlayerLocation]" with "%{_p_loc}%" in {_cmd}
+                        set {_b_loc} to "%{_loc}%"
+                        replace all "x: " with "" in {_b_loc}
+                        replace all "y: " with "" in {_b_loc} 
+                        replace all "z: " with "" in {_b_loc}
+                        replace all "," with "" in {_b_loc}
+                        replace all "[BlockLocation]" with "%{_b_loc}%" in {_cmd}
+                        set {_cmd} to RandomizeInteger({_cmd})
+                        set {_cmd} to RandomizeList({_cmd})
+                        if "%{_cmd}%" is not "":
+                            execute console command "%{_cmd}%"
+                            if {debug.mode} is true:
+                                send "&r[&aDebug&r] &eLucky Block&r &6Console&r ran command ""&a%{_cmd}%&r""" to console
+                                edit gui "DEBUG-%{_p}%-ITEMS":
+                                    if length of "%{_cmd}%" is greater than 100:
+                                        make next gui slot with {LuckyBlocks::Debug-Menu::Console-Command} with name "&r&lCONSOLE COMMAND" with lore "&7&nExecuted By&7:", "&rConsole", "", "&7&nCommand&7:", "&r&rMiddle-Click &8&o(Command Length extends GUI Scale Window!)", "", and "&8%now%&8 - %{_p}%":
+                                            if "%click type%" contains "middle":
+                                                send "&7Command: &r%{_cmd}%"
+                                    else:
+                                        make next gui slot with {LuckyBlocks::Debug-Menu::Console-Command} with name "&r&lCONSOLE COMMAND" with lore "&7&nExecuted By&7:", "&rConsole", "", "&7&nCommand&7:", "&r/%{_cmd}%", "", and "&8%now%&8 - %{_p}%"
+            if {_output::SendMessage} is set:
+                loop {_output::SendMessage::*}:
+                    add 1 to {_temp.num.message}
+                    set {_msg} to "%{_output::SendMessage::%{_temp.num.message}%}%"
+                    replace all "[Player]" with "%{_p}%" in {_msg}
+                    set {_player_uuid} to uuid of {_p}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_msg}
+                    set {_p_loc} to "%location of {_p}%"
+                    replace all "x: " with "" in {_p_loc}
+                    replace all "y: " with "" in {_p_loc} 
+                    replace all "z: " with "" in {_p_loc}
+                    replace all "," with "" in {_p_loc}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_msg}
+                    set {_b_loc} to "%{_loc}%"
+                    replace all "x: " with "" in {_b_loc}
+                    replace all "y: " with "" in {_b_loc} 
+                    replace all "z: " with "" in {_b_loc}
+                    replace all "," with "" in {_b_loc}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_msg}
+                    set {_msg} to RandomizeInteger({_msg})
+                    set {_msg} to RandomizeList({_msg})
+                    set {_msg} to colored "%{_msg}%"
+                    send formatted "%{_msg}%" to {_p}
+                    if {debug.mode} is true:
+                        send formatted "&r[&aDebug&r] &eLucky Block&r &6Console&r sent message ""&a%{_msg}%&r"" to &b%{_p}%" to console
+                        edit gui "DEBUG-%{_p}%-ITEMS":
+                            make next gui slot with {LuckyBlocks::Debug-Menu::Send-Message} with name "&r&lSEND MESSAGE" with lore "&7&nReceiver&7:", "&r%{_p}%", "", "&7&nMessage&7:", "&r%{_msg}%", "", and "&8%now%&8 - %{_p}%"
+            if {_output::BroadcastMessage} is set:
+                loop {_output::BroadcastMessage::*}:
+                    add 1 to {_temp.num.message.broadcast}
+                    set {_msg} to "%{_output::BroadcastMessage::%{_temp.num.message.broadcast}%}%"
+                    replace all "[Player]" with "%{_p}%" in {_msg}
+                    set {_player_world} to "%world of {_p}%"
+                    set {_player_uuid} to uuid of {_p}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_msg}
+                    set {_p_loc} to "%location of {_p}%"
+                    replace all "x: " with "" in {_p_loc}
+                    replace all "y: " with "" in {_p_loc} 
+                    replace all "z: " with "" in {_p_loc}
+                    replace all "," with "" in {_p_loc}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_msg}
+                    set {_b_loc} to "%{_loc}%"
+                    replace all "x: " with "" in {_b_loc}
+                    replace all "y: " with "" in {_b_loc} 
+                    replace all "z: " with "" in {_b_loc}
+                    replace all "," with "" in {_b_loc}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_msg}
+                    set {_msg} to RandomizeInteger({_msg})
+                    set {_msg} to RandomizeList({_msg})
+                    set {_msg} to colored "%{_msg}%"
+                    loop all players:
+                        if world of loop-player-1 = "%{_player_world}%":
+                            send formatted "%{_msg}%" to loop-player
+                            add "%loop-player%" to {_broadcastmessage::*}
+                    if {debug.mode} is true:
+                        set {_brmessage} to concat {_broadcastmessage::*} with ", "
+                        send formatted "&r[&aDebug&r] &eLucky Block&r &6Console&r sent message ""&a%{_msg}%&r"" to &aALL &rplayers in &b%{_p}%&r's Arena!" to console
+                        edit gui "DEBUG-%{_p}%-ITEMS":
+                            make next gui slot with {LuckyBlocks::Debug-Menu::Broadcast-Message} with name "&r&lSEND MESSAGE" with lore "&7&nReceiver&7:", "&r%{_p}%'s Arena &8&o(%{_brmessage}%&8&o)", "", "&7&nMessage&7:", "&r%{_msg}%", "", and "&8%now%&8 - %{_p}%"
+            if {_output::Structure} is set:
+                set {_temp.num.message.structure} to 0
+                loop {_output::Structure::*}:
+                    add 1 to {_temp.num.message.structure}
+                    set {_msg} to "%{_output::Structure::%{_temp.num.message.structure}%}%"
+                    replace all "[Player]" with "%{_p}%" in {_msg}
+                    set {_player_world} to "%world of {_p}%"
+                    set {_player_uuid} to uuid of {_p}
+                    replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_msg}
+                    set {_p_loc} to "%location of {_p}%"
+                    replace all "x: " with "" in {_p_loc}
+                    replace all "y: " with "" in {_p_loc} 
+                    replace all "z: " with "" in {_p_loc}
+                    replace all "," with "" in {_p_loc}
+                    replace all "[PlayerLocation]" with "%{_p_loc}%" in {_msg}
+                    set {_paste.loc} to location 2 meters below {_loc}
+                    replace all "x: " with "" in {_b_loc}
+                    replace all "y: " with "" in {_b_loc} 
+                    replace all "z: " with "" in {_b_loc}
+                    replace all "," with "" in {_b_loc}
+                    replace all "[BlockLocation]" with "%{_b_loc}%" in {_msg}
+                    set {_msg} to RandomizeInteger({_msg})
+                    set {_msg} to RandomizeList({_msg})
+                    set {_b_loc} to "%{_paste.loc}%"
+                    wait 2 ticks
+                    paste "%{_msg}%" at {_paste.loc} with entities
+                    if {debug.mode} is true:
+                        send formatted "&r[&aDebug&r] &eLucky Block&r &6Console&r pasted structure ""&a%{_msg}%&r"" for &b%{_p}%&r at &a%{_b_loc}%&r!" to console
+                        edit gui "DEBUG-%{_p}%-ITEMS":
+                            make next gui slot with {LuckyBlocks::Debug-Menu::Structure} with name "&r&lSTRUCTURE" with lore "&7&nStructure ID&7:", "&r%{_msg}%", "", "&7&nPaste Location&7:", "&r%{_b_loc}%", "", and "&8%now%&8 - %{_p}%"
+            if {_output::Hologram} is set:
+                if {_output::Hologram::1} is not "":
+                    set {_temp.count.up} to 0
+                    loop {_output::Hologram::*}:
+                        add 1 to {_temp.count.up}
+                        replace all "[PlayerLocation]" with "%{_p_loc}%" in {_output::Hologram::%{_temp.count.up}%}
+                        replace all "[PlayerUUID]" with "%{_player_uuid}%" in {_output::Hologram::%{_temp.count.up}%}
+                        replace all "[BlockLocation]" with "%{_b_loc}%" in {_output::Hologram::%{_temp.count.up}%}
+                        set {_output::Hologram::%{_temp.count.up}%} to RandomizeList({_output::Hologram::%{_temp.count.up}%})
+                        set {_output::Hologram::%{_temp.count.up}%} to RandomizeInteger({_output::Hologram::%{_temp.count.up}%})
+                        add colored "%{_output::Hologram::%{_temp.count.up}%}%" to {_HOLOLIST1::*}
+                    create a new hologram with line {_HOLOLIST1::*} 1.2 meters above {_loc} and store in {_%{_output::key}%::Hologram.holo}
+                    if {debug.mode} is true:
+                        set {_debug.hologram.hover} to concat {_HOLOLIST1::*} with formatted nl
+                        set {_debug.hologram} to concat {_HOLOLIST1::*} with formatted "&3[NL]"
+                        set {_debug.hologram.1} to concat {_HOLOLIST1::*} with formatted "&3 [NL] "
+                        set {_loc.new} to location 1.2 meters above {_loc}
+                        send formatted "&r[&aDebug&r] &eLucky Block&r &3Holographic Displays&r created a Hologram with id ""&a{_%{_output::key}%::Hologram.holo}&r"" at &a%{_loc.new}%&r reading ""&a%{_debug.hologram}%&r""!" to console
+                        edit gui "DEBUG-%{_p}%-ITEMS":
+                            make next gui slot with {LuckyBlocks::Debug-Menu::Hologram} with name "&r&lHOLOGRAM" with lore "&7&nHologram ID&7:", "&r_%{_output::key}%::Hologram.holo", "", "&7&nHologram&7:", "%{_debug.hologram.1}%", "", "&7&nHologram Location&7:", "&r%{_loc.new}%", "", and "&8%now%&8 - %{_p}%"
+            if {debug.mode} is true: 
+                edit gui "DEBUG-%{_p}%-ITEMS":
+                    loop 50 times:
+                        make next gui slot with air
+                    make gui slot 45 with black stained glass pane with name "&r"
+                    make gui slot 46 with black stained glass pane with name "&r"
+                    make gui slot 47 with black stained glass pane with name "&r"
+                    make gui slot 48 with black stained glass pane with name "&r"
+                    make gui slot 49 with black stained glass pane with name "&r"
+                    make gui slot 50 with black stained glass pane with name "&r"
+                    make gui slot 51 with black stained glass pane with name "&r"
+                    make gui slot 52 with black stained glass pane with name "&r"
+                    make gui slot 53 with black stained glass pane with name "&r"
+                send "&0==================================================================================================================" to console
+            wait {LuckyBlocks::Hologram-Delay}
+            loop 100 times:
+                remove hologram {_%{_output::key}%::Hologram.holo}
+#===============================================================================#
+function RandomizeInteger(replace: text) :: text:
+    if "%{_replace}%" contains "[Random]":
+        set {_replace.split::*} to {_replace} split at "[Random]"
+        set {_replace.split.continue::*} to {_replace.split::2} split at ")"
+        set {_replace.range} to "%{_replace.split.continue::1}%"
+        replace all "(" with "" in {_replace.range}
+        set {_replace.numbers::*} to {_replace.range} split at "-"
+        set {_num1} to "%{_replace.numbers::1}%" parsed as integer
+        set {_num2} to "%{_replace.numbers::2}%" parsed as integer
+        set {_replace.random} to random integer between {_num1} and {_num2}
+        set {_replace.currentRandom} to "[Random](%{_num1}%-%{_num2}%)"
+        set {_replace.split::*} to {_replace} split at {_replace.currentRandom}
+        set {_replace.split::1} to "%{_replace.split::1}%%{_replace.random}%%{_replace.split::2}%"
+        delete {_replace.split::2}
+        set {_replace} to join {_replace.split::*} with the delimiter {_replace.currentRandom}
+        return RandomizeInteger({_replace})
+    else:
+        return {_replace}
+#===============================================================================#
+function RandomizeList(replace: text) :: text:
+    if "%{_replace}%" contains "[RandomList]":
+        set {_replace.split::*} to {_replace} split at "[RandomList]"
+        set {_replace.split.continue::*} to {_replace.split::2} split at ")"
+        set {_replace.list} to "%{_replace.split.continue::1}%"
+        replace all "(" with "" in {_replace.list}
+        set {_replace.strings::*} to {_replace.list} split at ","
+        set {_replace.strings.index} to random integer between 1 and size of {_replace.strings::*}
+        set {_replace.random} to {_replace.strings::%{_replace.strings.index}%}
+        if {_replace.random} is not set:
+            set {_replace.random} to ""
+        # Replace only the first random
+        set {_replace.currentRandom} to "[RandomList](%{_replace.list}%)"
+        set {_replace.split::*} to {_replace} split at {_replace.currentRandom}
+        set {_replace.split::1} to "%{_replace.split::1}%%{_replace.random}%%{_replace.split::2}%"
+        delete {_replace.split::2}
+        set {_replace} to join {_replace.split::*} with the delimiter {_replace.currentRandom}
+        return RandomizeList({_replace})
+    else:
+        return {_replace}
