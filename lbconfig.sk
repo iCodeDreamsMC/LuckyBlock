@@ -106,7 +106,6 @@ command luckyblock [<text>] [<text>]:
                     replace all "[Version]" with "&e%{_output2::LatestVersion}%&a" in {LuckyBlocks::Updated}
                     send "%{LuckyBlocks::Prefix}%&a%{LuckyBlocks::Updated}%"
                     make player run command "jsonreloadconfig" as op
-                    make player run command "luckyblock reload" as op
 
 
             if {LuckyBlocks::Debug} is false:
@@ -286,7 +285,6 @@ command luckyblock [<text>] [<text>]:
                     download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
                     set line 3 in file "plugins/LuckyBlocks/config.json" to "    ""Version"": %{_output3::LatestVersion}%,"
                     make player run command "jsonreloadconfig" as op
-                make player run command "luckyblock reload" as op
                     
         else if arg-1 is not "Reload" or "Info" or "Update":
             send "&c[Error] &7Correct Usage: &e/luckyblock [Reload / Info / Update]"
