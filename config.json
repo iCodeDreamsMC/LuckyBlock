@@ -1,7 +1,7 @@
 {
     "Prefix": "&eLucky Block&6> ",
     "Version": "1.0",
-    "ServerID": "00000000000000000000",
+    "ServerID": "fZ6u6836Nb337H8TT284",
     "AdminID": "00000000000000000000",
     "Debug": false,
     "Auto Update": false,
@@ -16,7 +16,9 @@
     },
     "Messages":{
         "Reload": "&aReloaded Lucky Blocks!",
-        "Debug Menu Alert": "&b/debugmenu &3- &rOpen your Debug Menu"
+        "Debug Menu Alert": "&b/debugmenu &3- &rOpen your Debug Menu",
+        "No Updates": "No updates found!",
+        "Updated": "Successfully installed [Version]!"
     },
     "Debug Menu":{
         "Drop Info": "WRITABLE BOOK",
