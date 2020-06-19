@@ -1,4 +1,4 @@
-
+#
 #      ╔╗   ╔╗ ╔╗╔═══╗╔╗╔═╗╔╗  ╔╗     ╔══╗ ╔╗   ╔═══╗╔═══╗╔╗╔═╗╔═══╗
 #      ║║   ║║ ║║║╔═╗║║║║╔╝║╚╗╔╝║     ║╔╗║ ║║   ║╔═╗║║╔═╗║║║║╔╝║╔═╗║
 #      ║║   ║║ ║║║║ ╚╝║╚╝╝ ╚╗╚╝╔╝     ║╚╝╚╗║║   ║║ ║║║║ ╚╝║╚╝╝ ║╚══╗
@@ -16,16 +16,29 @@
 # [RandomList](First,Second,Third) - Replaced with a Random Input from the List.
 #
 #===============================================================================#
-Prefix: &eLucky Block&6>
-Version: 1.0 #DO NOT CHANGE THIS!!!
-ServerID: zw50Xn93x86bAow1oeER #DO NOT CHANGE THIS!!!
-AdminID: 00000000000000000000
-Spiral Lucky Block:
+Prefix: '&eLucky Block&6>'
+Version: 1.0
+ServerID: 00000000000000000000 #DO NOT CHANGE THIS!!!
+AdminID: 00000000000000000000 #DO NOT CHANGE THIS!!!
+Debug: false
+Auto-Update: false
+Hologram-Delay: 8
+Resource-Pack: 'https://www.dropbox.com/s/ivvrlc1nhuy0p63/luckyblocks.zip?dl=1'
+Lucky-Block:
   Super Lucky Block: 
     Material: gray terracotta
-    File Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
+    File-Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
   Normal Lucky Block: 
     Material: light gray terracotta
-    File Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
+    File-Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
 Messages:
-  Reload: &aReloaded Lucky Blocks!
+  Reload: '&aReloaded Lucky Blocks!'
+Debug-Menu:
+  Drop-Info: writable book
+  Item-Drop: paper
+  Player-Command: observer
+  Console-Command: observer
+  Send-Message: knowledge book
+  Broadcast-Message: knowledge book
+  Structure: black glazed terracotta
+  Hologram: nametag
