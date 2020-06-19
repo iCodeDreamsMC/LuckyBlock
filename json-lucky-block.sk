@@ -9,7 +9,25 @@ options:
     Noperms: &cYou do not have permission to that command!
 #===============================================================================#
 function LuckyBlock(file: text, p: player, loc: location, random: integer):
-    if {neverset} is not set:
+    create embed:
+        set the footer of embed to footer with text "iCode Development © 2020" and icon "https://media.discordapp.net/attachments/654540310419865603/678460824519704597/iCode_Logo_Square__Background.png?width=635&height=635"
+        if {LuckyBlocks::Embed-Color} is "red":
+            set the colour of the embed to red
+        if {LuckyBlocks::Embed-Color} is "orange":
+            set the colour of the embed to orange
+        if {LuckyBlocks::Embed-Color} is "yellow":
+            set the colour of the embed to yellow
+        if {LuckyBlocks::Embed-Color} is "green":
+            set the colour of the embed to green
+        if {LuckyBlocks::Embed-Color} is "blue":
+            set the colour of the embed to blue
+        if {LuckyBlocks::Embed-Color} is "black":
+            set the colour of the embed to black
+        if {LuckyBlocks::Embed-Color} is "white":
+            set the colour of the embed to white
+        set the timestamp of embed to now
+        set the title of embed to title with text "Lucky Block Drop - (Debug)"
+
         set {_contents::*} to file contents of "%{_file}%"
         set {_content} to concat {_contents::*} with nl
         set {_input} to {_content}
@@ -19,17 +37,18 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                 if {LuckyBlocks::Debug-Menu-Alert} is not "":
                     send action bar "%{LuckyBlocks::Debug-Menu-Alert}%" to {_p}
                 send "&0==================================================================================================================" to console
-                send "&r[&aDebug&r] &eLucky Block&r &r%{_p}% &ropened a &6Spiral Lucky Block" to console
+                send "&r[&aDebug&r] &eLucky Block&r &r%{_p}% &ropened a &6Lucky Block" to console
                 send formatted "&r[&aDebug&r] &eLucky Block&r &rDrop ##&a%{_random}%&r created by &a%{_output::author}%" to console
                 send formatted "&r[&aDebug&r] &eLucky Block&r Author: &r%{_output::author}%" to console
                 send formatted "&r[&aDebug&r] &eLucky Block&r File Location: &afile/drop_%{_random}%" to console
                 send formatted "&r[&aDebug&r] &eLucky Block&r View at: &b&n%{_file}%" to console
+                set the description of embed to "**Drop ##:** `%{_random}%` %nl%**Author:** `%{_output::author}%` %nl%**File Location:** %nl%```v%nl%%{_file}% %nl%``` %nl%**Block Location:** `%{_loc}%` %nl%**Executor:** `%{_p}%`"
                 create gui with id "DEBUG-%{_p}%-ITEMS" with virtual chest with 6 rows named "&0&l     LUCKY BLOCK DEBUG":
                     make next gui slot with black stained glass pane with name "&r"
                     make next gui slot with black stained glass pane with name "&r"
                     make next gui slot with black stained glass pane with name "&r"
                     make next gui slot with black stained glass pane with name "&r"
-                    make next gui slot with {LuckyBlocks::Debug-Menu::Drop-Info} with name "&f&lDROP INFORMATION" with lore "&7&nDrop ##&7:", "&r%{_random}%", "", "&7&nAuthor&7:", "&r%{_output::author}%", "", "&7&nFile Location&7:", "&r%{_file}%", "", "&7&nFile Name&7:", "&rdrop_%{_random}%&r.json", "", "&7&nBlock Type&7:", "&rSpiral Lucky Block", "", "&7&nBlock Location&7:", "&r%{_loc}%", "", "&7&nExecutor&7:", "&r%{_p}%", "", and "&8%now%&8 - %{_p}%"
+                    make next gui slot with {LuckyBlocks::Debug-Menu::Drop-Info} with name "&f&lDROP INFORMATION" with lore "&7&nDrop ##&7:", "&r%{_random}%", "", "&7&nAuthor&7:", "&r%{_output::author}%", "", "&7&nFile Location&7:", "&r%{_file}%", "", "&7&nFile Name&7:", "&rdrop_%{_random}%&r.json", "", "&7&nBlock Type&7:", "&rLucky Block", "", "&7&nBlock Location&7:", "&r%{_loc}%", "", "&7&nExecutor&7:", "&r%{_p}%", "", and "&8%now%&8 - %{_p}%"
                     make next gui slot with black stained glass pane with name "&r"
                     make next gui slot with black stained glass pane with name "&r"
                     make next gui slot with black stained glass pane with name "&r"
@@ -159,6 +178,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                             if {debug.mode} is true:
                                 send "&r[&aDebug&r] &eLucky Block&r Dropped &a%{_%{_output::key}%::Items::%loop-value-1%.amount}% &a%{_%{_output::key}%::Items::%loop-value-1%.item}%&r with name ""&a%{_%{_output::key}%::Items::%loop-value-1%.name}%&r"" with nbt ""&a%{_%{_output::key}%::Items::%loop-value-1%.nbt}%&r"" at location &a%{_loc}%""" to console
                                 edit gui "DEBUG-%{_p}%-ITEMS":
+                                    add split field named "Item Drop" with value "__ID__: `%{_%{_output::key}%::Items::%loop-value-1%.key}%` %nl%__Name__:`%{_%{_output::key}%::Items::%loop-value-1%.name}%` %nl%__Lore__: %nl%`%{_%{_output::key}%::Items::%loop-value-1%.lore1}%` %nl%`%{_%{_output::key}%::Items::%loop-value-1%.lore2}%` %nl%`%{_%{_output::key}%::Items::%loop-value-1%.lore3}%` %nl%__NBT__: `%{_%{_output::key}%::Items::%loop-value-1%.nbt}%` %nl%__Amount__: `%{_%{_output::key}%::Items::%loop-value-1%.amount}%`" to embed
                                     if length of "&r%{_%{_output::key}%::Items::%loop-value-1%.nbt}%" is greater than 100:
                                         set {_loopvalue1} to loop-value-1
                                         set {menuitem.number} to "%loop-value-1%"
@@ -192,6 +212,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                         if "%{_cmd}%" is not "":
                             make {_p} run command "%{_cmd}%" as op
                             if {debug.mode} is true:
+                                add split field named "Player Command" with value "__Executed By__: `%{_p}%` %nl%__Command__: `%{_cmd}%`" to embed
                                 send "&r[&aDebug&r] &eLucky Block&r &b%{_p}%&r was forced to run command ""&a%{_cmd}%&r"" as op" to console
                                 edit gui "DEBUG-%{_p}%-ITEMS":
                                     if length of "%{_cmd}%" is greater than 100:
@@ -227,6 +248,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                         if "%{_cmd}%" is not "":
                             execute console command "%{_cmd}%"
                             if {debug.mode} is true:
+                                add split field named "Console Command" with value "__Executed By__: `%{_p}%` %nl%__Command__: `%{_cmd}%`" to embed
                                 send "&r[&aDebug&r] &eLucky Block&r &6Console&r ran command ""&a%{_cmd}%&r""" to console
                                 edit gui "DEBUG-%{_p}%-ITEMS":
                                     if length of "%{_cmd}%" is greater than 100:
@@ -259,6 +281,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                     set {_msg} to colored "%{_msg}%"
                     send formatted "%{_msg}%" to {_p}
                     if {debug.mode} is true:
+                        add split field named "Send Message" with value "__Receiver__: `%{_p}%` %nl%__Message__: `%{_msg}%`" to embed
                         send formatted "&r[&aDebug&r] &eLucky Block&r &6Console&r sent message ""&a%{_msg}%&r"" to &b%{_p}%" to console
                         edit gui "DEBUG-%{_p}%-ITEMS":
                             make next gui slot with {LuckyBlocks::Debug-Menu::Send-Message} with name "&r&lSEND MESSAGE" with lore "&7&nReceiver&7:", "&r%{_p}%", "", "&7&nMessage&7:", "&r%{_msg}%", "", and "&8%now%&8 - %{_p}%"
@@ -290,10 +313,11 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                             send formatted "%{_msg}%" to loop-player
                             add "%loop-player%" to {_broadcastmessage::*}
                     if {debug.mode} is true:
+                        add split field named "Broadcast Message" with value "__Receiver__: `All Player's in %{_p}% World` %nl%__Message__: `%{_msg}%`" to embed
                         set {_brmessage} to concat {_broadcastmessage::*} with ", "
-                        send formatted "&r[&aDebug&r] &eLucky Block&r &6Console&r sent message ""&a%{_msg}%&r"" to &aALL &rplayers in &b%{_p}%&r's Arena!" to console
+                        send formatted "&r[&aDebug&r] &eLucky Block&r &6Console&r sent message ""&a%{_msg}%&r"" to &aALL &rplayers in &b%{_p}%&r's World!" to console
                         edit gui "DEBUG-%{_p}%-ITEMS":
-                            make next gui slot with {LuckyBlocks::Debug-Menu::Broadcast-Message} with name "&r&lSEND MESSAGE" with lore "&7&nReceiver&7:", "&r%{_p}%'s Arena &8&o(%{_brmessage}%&8&o)", "", "&7&nMessage&7:", "&r%{_msg}%", "", and "&8%now%&8 - %{_p}%"
+                            make next gui slot with {LuckyBlocks::Debug-Menu::Broadcast-Message} with name "&r&lSEND MESSAGE" with lore "&7&nReceiver&7:", "&r%{_p}%'s World &8&o(%{_brmessage}%&8&o)", "", "&7&nMessage&7:", "&r%{_msg}%", "", and "&8%now%&8 - %{_p}%"
             if {_output::Structure} is set:
                 set {_temp.num.message.structure} to 0
                 loop {_output::Structure::*}:
@@ -321,6 +345,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                     wait 2 ticks
                     paste "%{_msg}%" at {_paste.loc} with entities
                     if {debug.mode} is true:
+                        add split field named "Structure" with value "__File__: `%{_msg}%` %nl%__Location__: `%{_b_loc}%` %nl%__Executor__: `%{_p}%`" to embed
                         send formatted "&r[&aDebug&r] &eLucky Block&r &6Console&r pasted structure ""&a%{_msg}%&r"" for &b%{_p}%&r at &a%{_b_loc}%&r!" to console
                         edit gui "DEBUG-%{_p}%-ITEMS":
                             make next gui slot with {LuckyBlocks::Debug-Menu::Structure} with name "&r&lSTRUCTURE" with lore "&7&nStructure ID&7:", "&r%{_msg}%", "", "&7&nPaste Location&7:", "&r%{_b_loc}%", "", and "&8%now%&8 - %{_p}%"
@@ -337,14 +362,17 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                         add colored "%{_output::Hologram::%{_temp.count.up}%}%" to {_HOLOLIST1::*}
                     create a new hologram with line {_HOLOLIST1::*} 1.2 meters above {_loc} and store in {_%{_output::key}%::Hologram.holo}
                     if {debug.mode} is true:
+                        
                         set {_debug.hologram.hover} to concat {_HOLOLIST1::*} with formatted nl
                         set {_debug.hologram} to concat {_HOLOLIST1::*} with formatted "&3[NL]"
                         set {_debug.hologram.1} to concat {_HOLOLIST1::*} with formatted "&3 [NL] "
                         set {_loc.new} to location 1.2 meters above {_loc}
+                        add split field named "Hologram" with value "`%{_debug.hologram}%`" to embed
                         send formatted "&r[&aDebug&r] &eLucky Block&r &3Holographic Displays&r created a Hologram with id ""&a{_%{_output::key}%::Hologram.holo}&r"" at &a%{_loc.new}%&r reading ""&a%{_debug.hologram}%&r""!" to console
                         edit gui "DEBUG-%{_p}%-ITEMS":
                             make next gui slot with {LuckyBlocks::Debug-Menu::Hologram} with name "&r&lHOLOGRAM" with lore "&7&nHologram ID&7:", "&r_%{_output::key}%::Hologram.holo", "", "&7&nHologram&7:", "%{_debug.hologram.1}%", "", "&7&nHologram Location&7:", "&r%{_loc.new}%", "", and "&8%now%&8 - %{_p}%"
             if {debug.mode} is true: 
+                send last created embed to channel with id "%{LuckyBlocks::Channel-ID}%" with "%{LuckyBlocks::BotID}%"
                 edit gui "DEBUG-%{_p}%-ITEMS":
                     loop 50 times:
                         make next gui slot with air
