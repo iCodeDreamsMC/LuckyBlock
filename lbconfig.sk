@@ -76,7 +76,7 @@ command luckyblock [<text>] [<text>]:
 
 
 
-
+            set line 4 in file "plugins/LuckyBlocks/config.json" to "    ""ServerID"": ""%{ServerID}%"","
             set {_contents::*} to file contents of "plugins/LuckyBlocks/config.json"
             set {_content} to concat {_contents::*} with nl
             set {_input} to {_content}
