@@ -360,7 +360,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                         set {_output::Hologram::%{_temp.count.up}%} to RandomizeList({_output::Hologram::%{_temp.count.up}%})
                         set {_output::Hologram::%{_temp.count.up}%} to RandomizeInteger({_output::Hologram::%{_temp.count.up}%})
                         add colored "%{_output::Hologram::%{_temp.count.up}%}%" to {_HOLOLIST1::*}
-                    create a new hologram with line {_HOLOLIST1::*} 1.2 meters above {_loc} and store in {_%{_output::key}%::Hologram.holo}
+                    create a new hologram with line {_HOLOLIST1::*} 1.2 meters above {_loc} and store in {%{_output::key}%::Hologram.holo}
                     if {debug.mode} is true:
                         
                         set {_debug.hologram.hover} to concat {_HOLOLIST1::*} with formatted nl
@@ -368,7 +368,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                         set {_debug.hologram.1} to concat {_HOLOLIST1::*} with formatted "&3 [NL] "
                         set {_loc.new} to location 1.2 meters above {_loc}
                         add split field named "Hologram" with value "%{_debug.hologram}%" to embed
-                        send formatted "&r[&aDebug&r] &eLucky Block&r &3Holographic Displays&r created a Hologram with id ""&a{_%{_output::key}%::Hologram.holo}&r"" at &a%{_loc.new}%&r reading ""&a%{_debug.hologram}%&r""!" to console
+                        send formatted "&r[&aDebug&r] &eLucky Block&r &3Holographic Displays&r created a Hologram with id ""&a{%{_output::key}%::Hologram.holo}&r"" at &a%{_loc.new}%&r reading ""&a%{_debug.hologram}%&r""!" to console
                         edit gui "DEBUG-%{_p}%-ITEMS":
                             make next gui slot with {LuckyBlocks::Debug-Menu::Hologram} with name "&r&lHOLOGRAM" with lore "&7&nHologram ID&7:", "&r_%{_output::key}%::Hologram.holo", "", "&7&nHologram&7:", "%{_debug.hologram.1}%", "", "&7&nHologram Location&7:", "&r%{_loc.new}%", "", and "&8%now%&8 - %{_p}%"
             if {debug.mode} is true: 
@@ -386,9 +386,9 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                     make gui slot 52 with black stained glass pane with name "&r"
                     make gui slot 53 with black stained glass pane with name "&r"
                 send "&0==================================================================================================================" to console
-            wait 4 seconds
+            wait {LuckyBlocks::Hologram-Delay}
             loop 100 times:
-                remove hologram {_%{_output::key}%::Hologram.holo}
+                remove hologram {drop_%loop-value%::Hologram.holo}
 #===============================================================================#
 function RandomizeInteger(replace: text) :: text:
     if "%{_replace}%" contains "[Random]":
@@ -439,4 +439,6 @@ command jsonreloadconfig:
             delete file "plugins/Skript/scripts/lbconfig.sk"
         download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/lbconfig.sk" to file "plugins/Skript/scripts/lbconfig.sk"
         wait 4 ticks
+        execute console command "skript reload lbconfig"
+        wait 2 ticks
         make player run command "luckyblock reload" as op
