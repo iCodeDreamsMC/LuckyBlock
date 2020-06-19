@@ -3,21 +3,59 @@ options:
 
 on skript load:
     login to "%{LuckyBlocks::BotToken}%" with the name "%{LuckyBlocks::BotID}%"
+    if {LuckyBlocks::Auto-Update} is true:
+        execute console command "luckyblock update"
 
 on join:
     if {LuckyBlocks::Resource-Pack} is set:
         if {LuckyBlocks::Resource-Pack} is not "":
             send resource pack from "%{LuckyBlocks::Resource-Pack}%" to player
             send "%{LuckyBlocks::Resource-Pack-Message}%"
-  
-           
+#===============================================================================#
+import:
+    java.util.Arrays
+    org.bukkit.event.server.TabCompleteEvent
+#===============================================================================#
+effect set completions to %strings% at %string%:
+    trigger:
+        if expression-2 is "":
+            event.setCompletions(Arrays.asList(expressions-1))
+        else:
+            set {_completions::*} to expressions-1
+            loop expression-2.length() times:
+                loop {_completions::*}:
+                    if {_completions::%loop-index%}.substring(loop-number - 1, and loop-number) isn't expression-2.substring(loop-number - 1, and loop-number):
+                        clear {_completions::%loop-index%} 
+            event.setCompletions(Arrays.asList({_completions::*}))
+#===============================================================================#
+expression tabbed command:
+    get:
+        set {_text} to first element out of split event.getBuffer() at " "
+        return "/%{_text}%" if event.getSender() is CONSOLE else {_text}
+#===============================================================================#
+expression tab arg[ument]( |-)%*number%:
+    get:
+        set {_l::*} to split event.getBuffer() at " "
+        clear {_l::1}
+        set {_l::*} to {_l::*}
+        return {_l::%expr 1%}
+#===============================================================================#
+expression buffer:
+    get:
+        return event.getBuffer()
+#===============================================================================#
+on TabCompleteEvent:
+    if tabbed command is "/lb" or "/luckyblock" or "/luckyblocks":
+        if tab arg 2 isn't set:
+            set completions to "reload" or "update" or "info" at tab arg 1
+
 
 command luckyblock [<text>] [<text>]:
     usage: /luckyblock [Reload / Info / Update]
     permission: command.json
     permission message: {@Noperms}
     executable by: players and console
-    aliases: lb
+    aliases: lb, luckyblocks
     trigger:
         if arg-1 is "Reload":
 
@@ -87,6 +125,7 @@ command luckyblock [<text>] [<text>]:
             set {LuckyBlocks::AdminID} to {_output::AdminID}
             set {LuckyBlocks::Debug} to {_output::Debug}
             set {LuckyBlocks::Auto-Update} to {_output::Auto Update}
+            set {LuckyBlocks::Hologram-Delay} to "%{_output::Hologram Delay}% seconds" parsed as timespan
             set {LuckyBlocks::Resource-Pack} to {_output::Resource Pack}
 
             set {LuckyBlocks::Reload-Message} to colored {_output::Messages::Reload} 
@@ -109,7 +148,8 @@ command luckyblock [<text>] [<text>]:
             set {LuckyBlocks::Channel-ID} to {_output::Discord Integration::Channel ID}
             set {LuckyBlocks::Embed-Color} to {_output::Discord Integration::Embed Color}
             
-            send "%{LuckyBlocks::Prefix}%%{LuckyBlocks::Reload-Message}%"
+            send "%{LuckyBlocks::Prefix}%%{LuckyBlocks::Reload-Message}%" to player
+            send "%{LuckyBlocks::Prefix}%%{LuckyBlocks::Reload-Message}%" to console
             if {LuckyBlocks::Auto-Update} is true:
                 set {_contents2::*} to contents from url "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/api.json"
                 set {_content2} to concat {_contents2::*} with nl
@@ -123,6 +163,7 @@ command luckyblock [<text>] [<text>]:
                     replace all "[Version]" with "&e%{_output2::LatestVersion}%&a" in {LuckyBlocks::Updated}
                     send "%{LuckyBlocks::Prefix}%&a%{LuckyBlocks::Updated}% &8(Auto Update)"
                     make player run command "jsonreloadconfig" as op
+            execute console command "skript reload json-lucky-block"
 
 
             if {LuckyBlocks::Debug} is false:
@@ -303,13 +344,18 @@ command luckyblock [<text>] [<text>]:
                     delete file "plugins/Skript/scripts/json-lucky-block.sk"
                 download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
                 set line 3 in file "plugins/LuckyBlocks/config.json" to "    ""Version"": ""%{_output3::LatestVersion}%"","
+                execute console command "skript reload json-lucky-block"
                 wait 4 ticks
                 make player run command "jsonreloadconfig" as op
 
                     
         else if arg-1 is not "Reload" or "Info" or "Update":
             send "&c[Error] &7Correct Usage: &e/luckyblock [Reload / Info / Update]"
-        
+
+command test [<integer>]:
+    trigger:
+        remove hologram {drop_%arg-1%::Hologram.holo}
+
 command debugmenu:
     permission: command.debugmenu
     permission message: {@Noperms}
