@@ -5,6 +5,7 @@
     "AdminID": "00000000000000000000",
     "Debug": false,
     "Auto Update": false,
+    "Hologram Delay": 4.0,
     "Resource Pack": "https://www.dropbox.com/s/ivvrlc1nhuy0p63/luckyblocks.zip?dl=1",
     "Lucky Blocks": {
         "Spiral Lucky Block": {
