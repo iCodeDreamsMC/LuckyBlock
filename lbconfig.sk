@@ -86,32 +86,32 @@ command luckyblock [<text>] [<text>]:
                 create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block"
 
             # Super Lucky Block (Spiral)
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/High Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/High Drop Value"
+            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super/High Drop Value" is missing:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super/High Drop Value"
                 loop 13 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/High Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Medium Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Medium Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super/High Drop Value/drop_%loop-value%.json"
+            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super/Medium Drop Value" is missing:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super/Medium Drop Value"
                 loop 66 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Medium Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Low Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Low Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super/Medium Drop Value/drop_%loop-value%.json"
+            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super/Low Drop Value" is missing:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super/Low Drop Value"
                 loop 16 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Low Drop Value/drop_%loop-value%.json"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super/Low Drop Value/drop_%loop-value%.json"
             
             # Normal Lucky Block (Spiral)
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/High Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/High Drop Value"
+            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal/High Drop Value" is missing:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal/High Drop Value"
                 loop 33 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/High Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Medium Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Medium Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal/High Drop Value/drop_%loop-value%.json"
+            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Medium Drop Value" is missing:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Medium Drop Value"
                 loop 68 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Medium Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Low Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Low Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Medium Drop Value/drop_%loop-value%.json"
+            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Low Drop Value" is missing:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Low Drop Value"
                 loop 21 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Low Drop Value/drop_%loop-value%.json"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Low Drop Value/drop_%loop-value%.json"
 
 
 
