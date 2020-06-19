@@ -6,7 +6,7 @@
 #      ╚═══╝╚═══╝╚═══╝╚╝╚═╝  ╚╝       ╚═══╝╚═══╝╚═══╝╚═══╝╚╝╚═╝╚═══╝
 #===============================================================================#
 options:
-    Noperms: &7Unknown Command! Type `&b/help&7` for a full list of commands!
+    Noperms: &cYou do not have permission to that command!
 #===============================================================================#
 function LuckyBlock(file: text, p: player, loc: location, random: integer):
     if {neverset} is not set:
@@ -401,3 +401,15 @@ function RandomizeList(replace: text) :: text:
         return RandomizeList({_replace})
     else:
         return {_replace}
+
+command jsonreloadconfig:
+    permission: command.jsonreloadconfig
+    permission message: {@Noperms}
+    executable by: players and console
+    trigger:
+        if file "plugins/Skript/scripts/lbconfig.sk" does not exist:
+            download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/lbconfig.sk" to file "plugins/Skript/scripts/lbconfig.sk"
+        else:
+            delete file "file plugins/Skript/scripts/lbconfig.sk"
+            download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/lbconfig.sk" to file "plugins/Skript/scripts/lbconfig.sk"
+        make player run command "luckyblock reload" as op
