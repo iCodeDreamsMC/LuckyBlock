@@ -17,6 +17,7 @@
     "Messages":{
         "Reload": "&aReloaded Lucky Blocks!",
         "Debug Menu Alert": "&b/debugmenu &3- &rOpen your Debug Menu",
+        "Resource Pack": "&7Sending &eWorld Specific Resources&7...",
         "No Updates": "No updates found!",
         "Updated": "Successfully installed [Version]!"
     },
