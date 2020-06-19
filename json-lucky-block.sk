@@ -386,7 +386,7 @@ function LuckyBlock(file: text, p: player, loc: location, random: integer):
                     make gui slot 52 with black stained glass pane with name "&r"
                     make gui slot 53 with black stained glass pane with name "&r"
                 send "&0==================================================================================================================" to console
-            wait {LuckyBlocks::Hologram-Delay}
+            wait 4 seconds
             loop 100 times:
                 remove hologram {_%{_output::key}%::Hologram.holo}
 #===============================================================================#
