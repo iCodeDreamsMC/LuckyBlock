@@ -25,10 +25,10 @@ Auto-Update: false
 Hologram-Delay: 8
 Resource-Pack: 'https://www.dropbox.com/s/ivvrlc1nhuy0p63/luckyblocks.zip?dl=1'
 Lucky-Block:
-  Super Lucky Block: 
+  Super-Lucky-Block: 
     Material: gray terracotta
     File-Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
-  Normal Lucky Block: 
+  Normal-Lucky-Block: 
     Material: light gray terracotta
     File-Directory: plugins/LuckyBlock/Spiral Lucky Block/Super Lucky Block
 Messages:
