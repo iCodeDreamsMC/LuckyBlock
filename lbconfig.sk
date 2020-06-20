@@ -191,57 +191,57 @@ command luckyblock [<text>] [<text>]:
                 
                 if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky" is a directory:
                     set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Low} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky/Low Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky Lucky Block/Low Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Low}
                     if {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Low} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Low} to 0
 
                     set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Medium} to 0
-                    loop files in dir "plugins/LuckyBlocks%{_TEMPORARY}%/Unlucky/Medium Drop Value":
+                    loop files in dir "plugins/LuckyBlocks%{_TEMPORARY}%/Unlucky Lucky Block/Medium Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Medium}
                     if {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Medium} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Medium} to 0
 
                     set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::High} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky/High Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky Lucky Block/High Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Unlucky::High}
                     if {LuckyBlocks::%{_TEMPORARY}%::Unlucky::High} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::High} to 0
 
                 if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal" is a directory:
                     set {LuckyBlocks::%{_TEMPORARY}%::Normal::Low} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/Low Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal Lucky Block/Low Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Normal::Low}
                     if {LuckyBlocks::%{_TEMPORARY}%::Normal::Low} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Normal::Low} to 0
                     
                     set {LuckyBlocks::%{_TEMPORARY}%::Normal::Medium} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/Medium Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal Lucky Block/Medium Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Normal::Medium}
                     if {LuckyBlocks::%{_TEMPORARY}%::Normal::Medium} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Normal::Medium} to 0
 
                     set {LuckyBlocks::%{_TEMPORARY}%::Normal::High} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/High Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal Lucky Block/High Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Normal::High}
                     if {LuckyBlocks::%{_TEMPORARY}%::Normal::High} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Normal::High} to 0
 
                 if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Super" is a directory:
                     set {LuckyBlocks::%{_TEMPORARY}%::Super::Low} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Super/Low Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Super Lucky Block/Low Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Super::Low}
                     if {LuckyBlocks::%{_TEMPORARY}%::Super::Low} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Super::Low} to 0
                     
                     set {LuckyBlocks::%{_TEMPORARY}%::Super::Medium} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Super/Medium Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Super Lucky Block/Medium Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Super::Medium}
                     if {LuckyBlocks::%{_TEMPORARY}%::Super::Medium} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Super::Medium} to 0
 
                     set {LuckyBlocks::%{_TEMPORARY}%::Super::High} to 0
-                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Super/High Drop Value":
+                    loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Super Lucky Block/High Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Super::High}
                     if {LuckyBlocks::%{_TEMPORARY}%::Super::High} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Super::High} to 0
@@ -259,15 +259,15 @@ command luckyblock [<text>] [<text>]:
                     set line 7 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        set {_luckchance} to random integer between 1 and 10"
                     set line 8 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is 1:"
                     set line 9 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Unlucky::Low}%"
-                    set line 10 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky/Low Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 10 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky Lucky Block/Low Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
                     set line 11 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is between 2 and 5:"
                     set line 12 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Unlucky::Medium}%"
-                    set line 13 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky/Medium Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 13 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky Lucky Block/Medium Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
                     set line 14 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is between 6 and 10:"
                     set line 15 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Unlucky::High}%"
-                    set line 16 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 16 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky Lucky Block/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
 
 
@@ -280,15 +280,15 @@ command luckyblock [<text>] [<text>]:
                     set line 22 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        set {_luckchance} to random integer between 1 and 10"
                     set line 23 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is 1:"
                     set line 24 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Normal::Low}%"
-                    set line 25 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/Low Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 25 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Normal Lucky Block/Low Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
                     set line 26 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is between 2 and 5:"
                     set line 27 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Normal::Medium}%"
-                    set line 28 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/Medium Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 28 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Normal Lucky Block/Medium Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
                     set line 29 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is between 6 and 10:"
                     set line 30 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Normal::High}%"
-                    set line 31 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 31 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Normal Lucky Block/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
 
                 if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Super" is a directory:
@@ -300,15 +300,15 @@ command luckyblock [<text>] [<text>]:
                     set line 37 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        set {_luckchance} to random integer between 1 and 10"
                     set line 38 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is 1:"
                     set line 39 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Super::Low}%"
-                    set line 40 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Super/Low Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 40 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Super Lucky Block/Low Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
                     set line 41 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is between 2 and 5:"
                     set line 42 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Super::Medium}%"
-                    set line 43 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Super/Medium Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 43 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Super Lucky Block/Medium Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
                     set line 44 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "        if {_luckchance} is between 6 and 10:"
                     set line 45 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            set {_drop} to random integer between 1 and %{LuckyBlocks::%{_TEMPORARY}%::Super::High}%"
-                    set line 46 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Super/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
+                    set line 46 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Super Lucky Block/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
                 wait 2 ticks
                 execute console command "skript reload %{_TEMPORARY}%"
         if arg-1 is "Info":
