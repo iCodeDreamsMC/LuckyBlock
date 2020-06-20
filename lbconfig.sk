@@ -361,4 +361,7 @@ command debugmenu:
     permission message: {@Noperms}
     executable by: players and console
     trigger:
-        open gui "DEBUG-%player%-ITEMS" to player
+        if {debug.mode} = true:
+            open gui "DEBUG-%player%-ITEMS" to player
+        else:
+            send "&cDebug mode is disabled!"
