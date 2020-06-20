@@ -58,8 +58,10 @@ command luckyblock [<text>] [<text>]:
     aliases: lb, luckyblocks
     trigger:
         if arg-1 is "Reload":
-            if file "plugins/LuckyBlocks" is missing:
-                create directory "plugins/LuckyBlocks"
+            if file "plugins/iCodeDevelopment" is missing:
+                create directory "plugins/iCodeDevelopment"
+            if file "plugins/iCodeDevelopment/LuckyBlocks" is missing:
+                create directory "plugins/iCodeDevelopment/LuckyBlocks"
 
             if {ServerID} is not set:
                 set {ServerID} to random 20 char string from charset `a-zA-Z0-9`
