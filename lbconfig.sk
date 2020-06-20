@@ -69,8 +69,8 @@ command luckyblock [<text>] [<text>]:
             wait 2 ticks
             set line 4 in file "plugins/iCodeDevelopment/LuckyBlocks/config.json" to "    ""ServerID"": ""%{ServerID}%"","
 
-            if dir "plugins/iCodeDevelopment/LuckyBlocks/SPIRAL-LUCKY-BLOC" is missing:
-                create directory "plugins/iCodeDevelopment/LuckyBlocks/SPIRAL-LUCKY-BLOC"
+            if dir "plugins/iCodeDevelopment/LuckyBlocks/SPIRAL-LUCKY-BLOCK" is missing:
+                create directory "plugins/iCodeDevelopment/LuckyBlocks/SPIRAL-LUCKY-BLOCK"
 
             if dir "plugins/Skript/scripts/json-lucky-block.sk" is missing:
                 download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
