@@ -58,60 +58,57 @@ command luckyblock [<text>] [<text>]:
     aliases: lb, luckyblocks
     trigger:
         if arg-1 is "Reload":
-            if file "plugins/LuckyBlocks" is missing:
-                create directory "plugins/LuckyBlocks"
 
             if {ServerID} is not set:
                 set {ServerID} to random 20 char string from charset `a-zA-Z0-9`
 
-            if file "plugins/LuckyBlocks/config.json" is missing:
+
+            if file "plugins/LuckyBlocks/Spiral Lucky Block" is not a directory:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block"
+
+            if file "plugins/Skript/scripts/json-lucky-block.sk" does not exist:
+                download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
+
+
+            if file "plugins/LuckyBlocks/config.json" does not exist:
                 download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/config.json" to file "plugins/LuckyBlocks/config.json"
             wait 2 ticks
             set line 4 in file "plugins/LuckyBlocks/config.json" to "    ""ServerID"": ""%{ServerID}%"","
 
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block"
 
-            if dir "plugins/Skript/scripts/json-lucky-block.sk" is missing:
-                download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/json-lucky-block.sk" to file "plugins/Skript/scripts/json-lucky-block.sk"
-
-
-
-
-
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block" is missing:
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block" is not a directory:
                 create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block"
 
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block" is missing:
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block" is not a directory:
                 create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block"
 
             # Super Lucky Block (Spiral)
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super/High Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super/High Drop Value"
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/High Drop Value" is not a directory:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/High Drop Value"
                 loop 13 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super/High Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super/Medium Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super/Medium Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/SPIRAL-LUCKY-BLOCK/master/SUPER/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/High Drop Value/drop_%loop-value%.json"
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Medium Drop Value" is not a directory:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Medium Drop Value"
                 loop 66 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super/Medium Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Super/Low Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super/Low Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/SPIRAL-LUCKY-BLOCK/master/SUPER/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Medium Drop Value/drop_%loop-value%.json"
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Low Drop Value" is not a directory:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Low Drop Value"
                 loop 16 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/SUPER/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super/Low Drop Value/drop_%loop-value%.json"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/SPIRAL-LUCKY-BLOCK/master/SUPER/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Super Lucky Block/Low Drop Value/drop_%loop-value%.json"
             
             # Normal Lucky Block (Spiral)
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal/High Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal/High Drop Value"
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/High Drop Value" is not a directory:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/High Drop Value"
                 loop 33 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal/High Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Medium Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Medium Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/SPIRAL-LUCKY-BLOCK/master/NORMAL/High/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/High Drop Value/drop_%loop-value%.json"
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Medium Drop Value" is not a directory:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Medium Drop Value"
                 loop 68 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Medium Drop Value/drop_%loop-value%.json"
-            if dir "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Low Drop Value" is missing:
-                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Low Drop Value"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/SPIRAL-LUCKY-BLOCK/master/NORMAL/Medium/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Medium Drop Value/drop_%loop-value%.json"
+            if file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Low Drop Value" is not a directory:
+                create directory "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Low Drop Value"
                 loop 21 times:
-                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/Spiral-Lucky-Block/master/NORMAL/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal/Low Drop Value/drop_%loop-value%.json"
+                    download file from "https://raw.githubusercontent.com/iCodeDreamsMC/SPIRAL-LUCKY-BLOCK/master/NORMAL/Low/drop_%loop-value%.json" to file "plugins/LuckyBlocks/Spiral Lucky Block/Normal Lucky Block/Low Drop Value/drop_%loop-value%.json"
 
 
 
@@ -166,7 +163,6 @@ command luckyblock [<text>] [<text>]:
                     replace all "[Version]" with "&e%{_output2::LatestVersion}%&a" in {LuckyBlocks::Updated}
                     send "%{LuckyBlocks::Prefix}%&a%{LuckyBlocks::Updated}% &8(Auto Update)"
                     make player run command "jsonreloadconfig" as op
-            wait 2 ticks
             execute console command "skript reload json-lucky-block"
 
 
@@ -189,11 +185,11 @@ command luckyblock [<text>] [<text>]:
                 set {_TEMPORARY} to loop-index in upper case
                 replace all " " with "-" in {_TEMPORARY}
                 
-                if file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" is missing:
+                if file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" does not exist:
                     download file from "https://raw.githubusercontent.com/iCodeDreamsMC/LuckyBlock/master/blank.sk" to file "plugins/Skript/scripts/%{_TEMPORARY}%.sk"
 
                 
-                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky" is not missing:
+                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky" is a directory:
                     set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Low} to 0
                     loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky/Low Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Unlucky::Low}
@@ -212,7 +208,7 @@ command luckyblock [<text>] [<text>]:
                     if {LuckyBlocks::%{_TEMPORARY}%::Unlucky::High} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Unlucky::High} to 0
 
-                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal" is not missing:
+                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal" is a directory:
                     set {LuckyBlocks::%{_TEMPORARY}%::Normal::Low} to 0
                     loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/Low Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Normal::Low}
@@ -231,7 +227,7 @@ command luckyblock [<text>] [<text>]:
                     if {LuckyBlocks::%{_TEMPORARY}%::Normal::High} is not set:
                         set {LuckyBlocks::%{_TEMPORARY}%::Normal::High} to 0
 
-                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Super" is not missing:
+                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Super" is a directory:
                     set {LuckyBlocks::%{_TEMPORARY}%::Super::Low} to 0
                     loop files in dir "plugins/LuckyBlocks/%{_TEMPORARY}%/Super/Low Drop Value":
                         add 1 to {LuckyBlocks::%{_TEMPORARY}%::Super::Low}
@@ -255,7 +251,7 @@ command luckyblock [<text>] [<text>]:
                 set line 1 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "## File Automatically Generated on %now% (Created by: iCode Development)"
                 set line 2 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to " "
 
-                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky" is not missing:
+                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Unlucky" is a directory:
                     set line 3 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "## Unlucky Block - (%{_TEMPORARY}%)"
                     set line 4 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "on block break:"
                     set line 5 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "    if event-block = %{LuckyBlocks::%loop-index%::Unlucky}%:"
@@ -275,7 +271,7 @@ command luckyblock [<text>] [<text>]:
 
 
 
-                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal" is not missing:
+                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Normal" is a directory:
                     set line 17 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to " "
                     set line 18 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "## Normal Lucky Block - (%{_TEMPORARY}%)"
                     set line 19 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "on block break:"
@@ -295,7 +291,7 @@ command luckyblock [<text>] [<text>]:
                     set line 31 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "            LuckyBlock(""plugins/LuckyBlocks/%{_TEMPORARY}%/Normal/High Drop Value/drop_%%{_drop}%%.json"", player, location of event-block, {_drop})"
 
 
-                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Super" is not missing:
+                if file "plugins/LuckyBlocks/%{_TEMPORARY}%/Super" is a directory:
                     set line 32 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to " "
                     set line 33 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "## Super Lucky Block - (%{_TEMPORARY}%)"
                     set line 34 in file "plugins/Skript/scripts/%{_TEMPORARY}%.sk" to "on block break:"
@@ -355,6 +351,10 @@ command luckyblock [<text>] [<text>]:
                     
         else if arg-1 is not "Reload" or "Info" or "Update":
             send "&c[Error] &7Correct Usage: &e/luckyblock [Reload / Info / Update]"
+
+command test [<integer>]:
+    trigger:
+        remove hologram {drop_%arg-1%::Hologram.holo}
 
 command debugmenu:
     permission: command.debugmenu
